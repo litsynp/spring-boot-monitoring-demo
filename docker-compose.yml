@@ -2,6 +2,7 @@ version: '3.8'
 
 volumes:
   mysql_data:
+  prometheus_data:
 
 services:
 
@@ -23,4 +24,15 @@ services:
     restart: always
     ports:
       - '8090:8080'
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/:/etc/prometheus
+      - prometheus_data:/prometheus
+    ports:
+      - '9090:9090'
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    restart: always
 
