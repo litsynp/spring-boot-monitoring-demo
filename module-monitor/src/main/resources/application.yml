@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testdb?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: testuser
+    password: testpass
+  sql:
+    init:
+      mode: always
+  jpa:
+    show-sql: true
+#    hibernate:
+#      ddl-auto: create
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        format_sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
